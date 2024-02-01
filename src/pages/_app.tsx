@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Binary's Code</title>
         <meta name='description' content='Web application that contains leetcode problems amd vedio sollutions' />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel='icon' href='/favicon.png' />
+        <link rel='icon' href='/top-logo.png'/>
       </Head>
       <ToastContainer/>
       <Component {...pageProps} />
