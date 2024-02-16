@@ -1,11 +1,14 @@
+import { Problem } from '@/utils/types/problem';
 import React from 'react';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 import { BsCheck2Circle } from 'react-icons/bs';
 import { TiStarOutline } from 'react-icons/ti';
 
-type ProblemDescriptionProps = {};
+type ProblemDescriptionProps = {
+  problem: Problem
+};
 
-const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
+const ProblemDescription: React.FC<ProblemDescriptionProps> = ({problem}) => {
   return (
     <div className='bg-dark-layer-1'>
       {/* TAB */}
@@ -20,9 +23,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
           {/* Problem heading */}
           <div className='w-full'>
             <div className='flex space-x-4'>
-              <div className='flex-1 mr-2 text-lg text-white font-medium'>
-                1. Two Sum
-              </div>
+              <div className='flex-1 mr-2 text-lg text-white font-medium'>{problem?.title}</div>
             </div>
 
             {/* Problem details */}
@@ -49,25 +50,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
 
           {/* Problem Statement(paragraphs) */}
           <div className='text-white text-sa'>
-            <p className='mt-3'>
-              Given an array of integers <code>nums</code> and an integer{' '}
-              <code>target</code>, return
-              <em>
-                indices of the two numbers such that they add up to{' '}
-              </em>{' '}
-              <code>target</code>.
-            </p>
-
-            <p className='mt-3'>
-              You may assume that each input would have{' '}
-              <strong>exactly one solution</strong>, and you may not use the
-              same element twice.
-            </p>
-
-            <p className='mt-3'>
-              You can return the answer in any order.
-            </p>
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: problem.problemStatement }} />
+              </div>
 
           {/* Examples */}
           {/* Examples 1*/}
