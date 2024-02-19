@@ -89,12 +89,12 @@ export const problems: Problem[] = [
 		videoId: "",
 	},
 
-	{
-		id: "pattern",
-		title: "pattern",
-		difficulty: "Easy",
-		category: "loop",
-		order: 11,
-		videoId: "",
-	},
+	// {
+	// 	id: "pattern",
+	// 	title: "pattern",
+	// 	difficulty: "Easy",
+	// 	category: "loop",
+	// 	order: 11,
+	// 	videoId: "",
+	// },
 ];
