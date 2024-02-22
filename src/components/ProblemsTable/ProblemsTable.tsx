@@ -94,9 +94,9 @@ const ProblemsTable:React.FC<ProblemsTableProps> = ({ setLoadingProblems }) => {
 										className='hover:text-blue-600 cursor-pointer'
 										target='_blank'
 									>
-										<button className="bg-brand-orange text-white  py-2 px-3 rounded">
-								View Notes
-								</button>
+										<button className="bg-brand-orange hover:bg-brand-orange-s text-white py-2 px-3 rounded">
+											View Notes
+											</button>
 									</Link>
 								) : (
 									<p className='text-gray-400'>Coming soon</p>
