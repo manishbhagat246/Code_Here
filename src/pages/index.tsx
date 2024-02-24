@@ -1,5 +1,6 @@
 import ProblemsTable from "@/components/ProblemsTable/ProblemsTable";
 import Topbar from "@/components/Topbar/Topbar";
+import useHasMounted from "@/hooks/useHasMounted";
 // import { firestore } from "@/firebase/firebase";
 // import { doc, setDoc } from "firebase/firestore";
 // import Head from "next/head";
@@ -7,9 +8,9 @@ import { useState } from "react";
 
 export default function Home() {
 	const [loadingProblems, setLoadingProblems] = useState(true);
-	// const hasMounted = useHasMounted();
+	const hasMounted = useHasMounted();
 
-	// if (!hasMounted) return null;
+	if (!hasMounted) return null;
 	// const [inputs,setInputs] = useState({
 	// 	id: '',
 	// 	title: '',
