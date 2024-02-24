@@ -10,6 +10,7 @@ import RectangleSkeleton from '@/components/sketetons/RectangleSkeleton';
 import CircleSkeleton from '@/components/sketetons/CircleSkeleton';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 type ProblemDescriptionProps = {
   problem: Problem
@@ -171,6 +172,19 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({problem}) => {
           <div className='w-full'>
             <div className='flex space-x-4'>
               <div className='flex-1 mr-2 text-lg text-white font-medium'>{problem?.title}</div>
+			  
+									<div>
+										<Link
+										href='https://www.blackbox.ai/chat/expert-javascript'
+										className='hover:text-blue-600 cursor-pointer'
+										target='_blank'
+									>
+										<button className="bg-brand-orange hover:bg-brand-orange-s text-white py-1 px-2 rounded">
+											Ask AI
+											</button>
+									</Link>
+									</div>
+								
             </div>
 
             {/* Problem details */}
