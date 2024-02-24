@@ -20,6 +20,7 @@ export type Problem = {
 };
 
 export type DBProblem = {
+	notesLink: any;
 	id: string;
 	title: string;
 	category: string;
