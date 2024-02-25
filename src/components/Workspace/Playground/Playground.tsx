@@ -11,7 +11,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, firestore } from '@/firebase/firebase';
 import { useRouter } from 'next/router';
 import { problems } from '@/utils/problems';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { arrayUnion, doc, getDoc, updateDoc } from 'firebase/firestore';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 type PlaygroundProps = {
   problem: Problem;
@@ -20,17 +21,22 @@ type PlaygroundProps = {
 
 
 };
+export interface Isettings{
+	fontSize: string;
+	settingsModalIsOpen: boolean;
+	dropdownIsOpen: boolean;
+}
 const Playground: React.FC<PlaygroundProps> = ({ problem, setSuccess, setSolved }) => {
 	const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
 	let [userCode, setUserCode] = useState<string>(problem.starterCode);
 
-	// const [fontSize, setFontSize] = useLocalStorage("lcc-fontSize", "16px");
+	const [fontSize, setFontSize] = useLocalStorage("bc-fontSize", "16px");
 
-	// const [settings, setSettings] = useState<ISettings>({
-	// 	fontSize: fontSize,
-	// 	settingsModalIsOpen: false,
-	// 	dropdownIsOpen: false,
-	// });
+	const [settings, setSettings] = useState<Isettings>({
+		fontSize: "fontSize",
+		settingsModalIsOpen: false,
+		dropdownIsOpen: false,
+	});
 
 	const [user] = useAuthState(auth);
 	const {
@@ -67,6 +73,8 @@ const Playground: React.FC<PlaygroundProps> = ({ problem, setSuccess, setSolved 
 					const userRef = doc(firestore, "users", user.uid);
 					await updateDoc(userRef, {
 						solvedProblems: arrayUnion(pid),
+						[`solvedProblemsCode.${pid}`]: userCode,
+						
 					});
 					setSolved(true);
 				}
@@ -92,14 +100,20 @@ const Playground: React.FC<PlaygroundProps> = ({ problem, setSuccess, setSolved 
 	};
 
 	useEffect(() => {
-		const code = localStorage.getItem(`code-${pid}`);
-		if (user) {
-			setUserCode(code ? JSON.parse(code) : problem.starterCode);
-		} else {
-			setUserCode(problem.starterCode);
-		}
+		const fetchUserCode = async () => {
+			if (user) {
+				const userRef = doc(firestore, "users", user.uid);
+				const userDoc = await getDoc(userRef);
+				const userCodeFromFirestore = userDoc.data()?.solvedProblemsCode?.[pid as string];
+				setUserCode(userCodeFromFirestore || problem.starterCode);
+			} else {
+				setUserCode(problem.starterCode);
+			}
+		};
+	
+		fetchUserCode();
 	}, [pid, user, problem.starterCode]);
-
+	
 	const onChange = (value: string) => {
 		setUserCode(value);
 		localStorage.setItem(`code-${pid}`, JSON.stringify(value));
@@ -107,16 +121,17 @@ const Playground: React.FC<PlaygroundProps> = ({ problem, setSuccess, setSolved 
   return (
     <div className='flex flex-col bg-dark-layer-1 relative overflow-x-hidden'>
 
-      <PreferenceNav />
+      <PreferenceNav settings={settings} setSettings={setSettings}/>
 
       <Split className="h-[calc(100vh-94px)]" direction="vertical" sizes={[60, 40]} minSize={60}>
         <div className="w-full overflow-auto">
           <CodeMirror
             value={userCode}
+			// value={problem.starterCode}
             theme={vscodeDark}
             onChange={onChange}
             extensions={[javascript()]}
-            style={{ fontSize: 16 }}
+            style={{ fontSize: settings.fontSize }}
           />
         </div>
 
