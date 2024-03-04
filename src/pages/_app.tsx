@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<link rel='icon' href='/top-logo.png' />
 				<meta
 					name='description'
-					content='Web application that contains leetcode problems and video solutions'
+					content='Web application to practice the problems.'
 				/>
 			</Head>
 			<ToastContainer />
