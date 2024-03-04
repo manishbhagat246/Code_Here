@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<RecoilRoot>
 			<Head>
-				<title>Binary's Code</title>
+				<title>Binary&apos;s Code</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/top-logo.png' />
 				<meta
