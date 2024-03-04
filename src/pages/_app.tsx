@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<link rel='icon' href='/top-logo.png' />
 				<meta
 					name='description'
-					content='Best Web application to practice the problems.'
+					content='Best web application to practice the problems.'
 				/>
 			</Head>
 			<ToastContainer />
