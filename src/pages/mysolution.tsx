@@ -3,7 +3,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, firestore } from '@/firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
-import Navbar from '@/components/Navbar/Navbar';
 import Topbar from '@/components/Topbar/Topbar';
 import jsPDF from 'jspdf';
 
@@ -11,9 +10,7 @@ type Service = {
   solvedProblemsCode: Record<string, string>;
 };
 
-const mySolution: React.FC = () => {
-
-  
+const MySolution: React.FC = () => {
   const [user] = useAuthState(auth);
   const [serviceDetails, setServiceDetails] = useState<Service | null>(null);
   const [selectedProblemId, setSelectedProblemId] = useState<string>('');
@@ -80,7 +77,6 @@ const mySolution: React.FC = () => {
           {!serviceDetails || !selectedProblemId || !serviceDetails.solvedProblemsCode[selectedProblemId] ? (
             <p>Submit your code first</p>
           ) : (
-            
             <pre>{serviceDetails.solvedProblemsCode[selectedProblemId]}</pre>
           )}
         </div>
@@ -89,4 +85,4 @@ const mySolution: React.FC = () => {
   );
 };
 
-export default mySolution;
+export default MySolution;

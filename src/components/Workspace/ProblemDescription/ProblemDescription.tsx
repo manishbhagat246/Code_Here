@@ -268,7 +268,7 @@
 								{problem.examples.map((example, index) => (
 									<div key={example.id}>
 										<p className='font-medium text-white '>Example {index + 1}: </p>
-										{example.img && <img src={example.img} alt='' className='mt-3' />}
+										{example.img && <Image src={example.img} alt='' className='mt-3' height={500} width={500}/>}
 										<div className='example-card'>
 											<pre>
 												<strong className='text-white'>Input: </strong> {example.inputText}
