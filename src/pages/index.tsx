@@ -31,16 +31,16 @@ export default function Home() {
 			
 	// 		};
 
-	// 		const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-	// 			e.preventDefault();
-	// 			//convert inputs.order to integer
-	// 			const newProblem = {
-	// 				...inputs,
-	// 				order: Number(inputs.order),
-	// 			}
-	// 			await setDoc(doc(firestore, "problems", inputs.id), newProblem);
-	// 			alert("saved to db")
-	// 		}
+			// const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+			// 	e.preventDefault();
+			// 	//convert inputs.order to integer
+			// 	const newProblem = {
+			// 		...inputs,
+			// 		order: Number(inputs.order),
+			// 	}
+			// 	await setDoc(doc(firestore, "problems", inputs.id), newProblem);
+			// 	alert("saved to db")
+			// }
 			
 	
   return (

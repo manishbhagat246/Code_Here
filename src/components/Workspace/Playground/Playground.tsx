@@ -126,12 +126,12 @@ const Playground: React.FC<PlaygroundProps> = ({ problem, setSuccess, setSolved 
       <Split className="h-[calc(100vh-94px)]" direction="vertical" sizes={[60, 40]} minSize={60}>
         <div className="w-full overflow-auto">
           <CodeMirror
-            value={userCode}
-			// value={problem.starterCode}
-            theme={vscodeDark}
-            onChange={onChange}
-            extensions={[javascript()]}
-            style={{ fontSize: settings.fontSize }}
+				value={userCode}
+				// value={problem.starterCode}
+				theme={vscodeDark}
+				onChange={onChange}
+				extensions={[javascript()]}
+				style={{ fontSize: settings.fontSize }}
           />
         </div>
 
