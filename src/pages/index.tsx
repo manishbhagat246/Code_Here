@@ -1,48 +1,49 @@
 import ProblemsTable from "@/components/ProblemsTable/ProblemsTable";
 import Topbar from "@/components/Topbar/Topbar";
 import useHasMounted from "@/hooks/useHasMounted";
-import { firestore } from "@/firebase/firebase";
-import { doc, setDoc } from "firebase/firestore";
+//import { firestore } from "@/firebase/firebase";
+//import { doc, setDoc } from "firebase/firestore";
 // import Head from "next/head";
 import { useState } from "react";
 
 export default function Home() {
 	const [loadingProblems, setLoadingProblems] = useState(true);
-	const [inputs, setInputs] = useState({
-		id: '',
-		title: '',
-		difficulty: '',
-		category: '',
-		videoId: '',
-		link: '',
-		order: 0,
-		likes: 0,
-		disliked: 0,
-	});
-
 	const hasMounted = useHasMounted();
+	
+	if (!hasMounted) return null;
+	// const [inputs, setInputs] = useState({
+	// 	id: '',
+	// 	title: '',
+	// 	difficulty: '',
+	// 	category: '',
+	// 	videoId: '',
+	// 	link: '',
+	// 	order: 0,
+	// 	likes: 0,
+	// 	disliked: 0,
+	// });
+
 
 	// Handle input changes
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputs({
-			...inputs,
-			[e.target.name]: e.target.value,
-		});
-	};
+	// const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setInputs({
+	// 		...inputs,
+	// 		[e.target.name]: e.target.value,
+	// 	});
+	// };
 
-	// Handle form submit
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		// Convert inputs.order to integer
-		const newProblem = {
-			...inputs,
-			order: Number(inputs.order),
-		};
-		await setDoc(doc(firestore, "problems", inputs.id), newProblem);
-		alert("Saved to database");
-	};
+	// // Handle form submit
+	// const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	// 	e.preventDefault();
+	// 	// Convert inputs.order to integer
+	// 	const newProblem = {
+	// 		...inputs,
+	// 		order: Number(inputs.order),
+	// 	};
+	// 	await setDoc(doc(firestore, "problems", inputs.id), newProblem);
+	// 	alert("Saved to database");
+	// };
 
-	if (!hasMounted) return null;
 	
   return (
     <>
@@ -94,7 +95,7 @@ export default function Home() {
 				</div>
 
 				{/* temp form */}
-				<form className='p-6 flex flex-col max-w-sm gap-3' onSubmit={handleSubmit}>
+				{/* <form className='p-6 flex flex-col max-w-sm gap-3' onSubmit={handleSubmit}>
 			<input onChange={handleInputChange} type="text" placeholder="problem id" name="id" value={inputs.id} />
 			<input onChange={handleInputChange} type="text" placeholder="title" name="title" value={inputs.title} />
 			<input onChange={handleInputChange} type="text" placeholder="difficulty" name="difficulty" value={inputs.difficulty} />
@@ -103,7 +104,7 @@ export default function Home() {
 			<input onChange={handleInputChange} type="text" placeholder="videoId?" name="videoId" value={inputs.vedioId} />
 			<input onChange={handleInputChange} type="text" placeholder="link?" name="link" value={inputs.link} />
 			<button className="bg-white" type="submit">Save to db</button>
-			</form>
+			</form> */}
 			</main>
 		</>
 	);
